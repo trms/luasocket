@@ -15,32 +15,6 @@
     <ClCompile Include="src\wsocket.c" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="src\ltn12.lua">
-      <Filter>cdir</Filter>
-    </CustomBuild>
-    <CustomBuild Include="src\socket.lua">
-      <Filter>cdir</Filter>
-    </CustomBuild>
-    <CustomBuild Include="src\ftp.lua">
-      <Filter>ldir</Filter>
-    </CustomBuild>
-    <CustomBuild Include="src\headers.lua">
-      <Filter>ldir</Filter>
-    </CustomBuild>
-    <CustomBuild Include="src\http.lua">
-      <Filter>ldir</Filter>
-    </CustomBuild>
-    <CustomBuild Include="src\smtp.lua">
-      <Filter>ldir</Filter>
-    </CustomBuild>
-    <CustomBuild Include="src\tp.lua">
-      <Filter>ldir</Filter>
-    </CustomBuild>
-    <CustomBuild Include="src\url.lua">
-      <Filter>ldir</Filter>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
     <Filter Include="cdir">
       <UniqueIdentifier>{b053460d-5439-4e3a-a2eb-c31a95b5691f}</UniqueIdentifier>
     </Filter>

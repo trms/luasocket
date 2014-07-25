@@ -1,0 +1,79 @@
+nuget {
+	nuspec {
+		id = luasocket;
+		title: luasocket - lua socket library;
+		version: 3.0.0.1;
+		authors: {coapp, Diego Nehab, Tightrope Media Systems};
+		owners: {Diego Nehab, Tightrope Media Systems};
+		licenseUrl: "http://opensource.org/licenses/MIT";
+		releaseNotes: {@"This is the LuaSocket 3.0-rc1. It has been tested on Windows 7, Mac OS X,
+						and Linux. Please use the project page at GitHub https://github.com/diegonehab/luasocket
+						to file bug reports or propose changes."}; 
+		requireLicenseAcceptance:false;
+		summary: "lua socket library";
+		copyright: "Copyright © 2004-2007 Diego Nehab. All rights reserved.";
+		tags: {native, Lua, module, luasocket, socket};
+		description: {@"lua socket library";}
+	};
+
+	dependencies {
+        // This node defines any outside items which may be needed to consume this package.
+        packages : {
+            // This is a list of other NuGet packages required to use this package.
+            // Each item follows the format "<pkg_name>/<version>"
+            lua/"[5.3.0003.03, 5.4)",
+        };
+    };
+
+	files {
+		// declare a lua collection
+		lua : {
+			// copies the whole folder tree.
+			#add-all-files : Items.luaFiles;
+			// set the destination in the package itself. 
+			#destination : ${build_root}\lua;
+		};
+		lualib : {
+			// copies the whole folder tree.
+			#add-all-files : Items.coreBin;
+			// set the destination in the package itself. 
+			#destination : ${build_root}\${conditionFolder}\luasocket;
+		};
+		
+		[x64, v100, Release] {
+			lualib: {"x64\Release\socket\**\*"};
+		};
+		
+		[x64, v100, Debug] {
+			lualib: {"x64\Debug\socket\**\*"};
+		};
+
+        [win32, v100, Release] {
+			lualib: {"Win32\Release\socket\**\*"};
+		};
+		
+		[win32, v100, Debug] {
+			lualib: {"Win32\Debug\socket\**\*"};
+		};
+		lua: {".\src\*.lua"};
+    };
+	
+	targets {
+		AfterBuild {
+			.Copy {
+				DestinationFiles = "@(coreBin->'$(TargetDir)socket\%(RecursiveDir)%(Filename)%(Extension)')";
+				SourceFiles = "@(coreBin)";
+				SkipUnchangedFiles = true;
+				UseHardlinksIfPossible = true;
+			};
+		};
+		AfterBuild {
+			.Copy {
+				DestinationFolder = "$(TargetDir)";
+				SourceFiles = "@(luaFiles)";
+				SkipUnchangedFiles = true;
+				UseHardlinksIfPossible = true;
+			};
+		};
+	}
+}
