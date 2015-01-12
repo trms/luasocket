@@ -9,11 +9,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="src\mime.lua">
-      <Filter>cdir</Filter>
-    </CustomBuild>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ClInclude Include="src\mime.h" />
   </ItemGroup>
 </Project>
