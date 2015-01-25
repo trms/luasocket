@@ -25,7 +25,7 @@
 #endif
 
 #ifndef luaL_checkint
-#define luaL_checkint (int)luaL_checkinteger
+#define luaL_checkint(L,n) ((int)luaL_checkinteger(L, (n)))
 #endif
 
 MIME_API int luaopen_mime_core(lua_State *L);

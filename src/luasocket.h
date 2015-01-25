@@ -8,7 +8,7 @@
 \*=========================================================================*/
 #include "lua.h"
 #ifndef luaL_checkint
-#define luaL_checkint (int)luaL_checkinteger
+#define luaL_checkint(L,n) ((int)luaL_checkinteger(L, (n)))
 #endif
 /*-------------------------------------------------------------------------*\
 * Current socket library version
